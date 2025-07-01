@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     inotify-tools \
     p7zip-full \
+    nginx \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Chrome
@@ -45,6 +46,8 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entrypoint.sh /app/entrypoint.sh
 COPY file-monitor.py /app/file-monitor.py
 COPY chrome-launcher.sh /app/chrome-launcher.sh
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY index.html /app/index.html
 
 # Make scripts executable
 RUN chmod +x /app/entrypoint.sh /app/chrome-launcher.sh
@@ -52,7 +55,7 @@ RUN chmod +x /app/entrypoint.sh /app/chrome-launcher.sh
 # Create necessary directories
 RUN mkdir -p /app/config /app/downloads /app/music
 
-# Expose VNC port
+# Expose port
 EXPOSE 5656
 
 # Set entrypoint
