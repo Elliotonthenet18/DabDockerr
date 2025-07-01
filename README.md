@@ -1,6 +1,6 @@
 # DabDockerr
 
-A Docker-based browser wrapper for accessing music download sites with automatic file management and ad-blocking capabilities.
+A Docker-based browser wrapper for accessing Dab Music Downloader with automatic file management and ad-blocking capabilities.
 
 ## Features
 
