@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  dab-wrapper:
+    image: elliotonthenet18/dab-dockerr:latest
+    container_name: dab-music-wrapper
+    ports:
+      - "5656:5656"
+    volumes:
+      - ./config:/app/config
+      - ./downloads:/app/downloads
+      - ${MUSIC_FOLDER:-./Music}:/app/music
+    environment:
+      - TARGET_URL=https://dab.yeet.su/
+      - VNC_PORT=5656
+      - DISPLAY=:1
+    restart: unless-stopped
+    shm_size: 2gb
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_ADMIN
