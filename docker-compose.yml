@@ -12,7 +12,6 @@ services:
       - ${MUSIC_FOLDER:-./Music}:/app/music
     environment:
       - TARGET_URL=https://dab.yeet.su/
-      - VNC_PORT=5656
       - DISPLAY=:1
     restart: unless-stopped
     shm_size: 2gb
