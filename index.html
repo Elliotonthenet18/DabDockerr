@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAB Music</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        #vnc-container {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">Loading music site...</div>
+    <iframe id="vnc-container" src="/vnc/vnc.html?autoconnect=true&resize=scale&quality=9" style="display:none;"></iframe>
+    
+    <script>
+        // Auto-connect and hide loading after a delay
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('vnc-container').style.display = 'block';
+        }, 5000);
+    </script>
+</body>
+</html>
