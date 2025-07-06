@@ -19,3 +19,7 @@ services:
       - seccomp:unconfined
     cap_add:
       - SYS_ADMIN
+    tmpfs:
+      - /tmp:exec,nodev,nosuid,size=1g
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
