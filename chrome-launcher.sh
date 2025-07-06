@@ -3,15 +3,18 @@
 # Create downloads directory if needed
 mkdir -p /app/downloads
 
-# Launch Chrome in headless mode (non-GUI)
+# Wait for X server to be ready
+sleep 5
+
+# Launch Chrome with proper extensions and settings
 /usr/bin/google-chrome \
     --no-sandbox \
     --disable-dev-shm-usage \
     --disable-gpu \
     --disable-software-rasterizer \
     --user-data-dir=/app/config/chrome-data \
-    --headless=new \
-    --disable-extensions \
+    --disable-extensions-except=/opt/extensions/ublock-origin \
+    --load-extension=/opt/extensions/ublock-origin \
     --disable-default-apps \
     --disable-background-timer-throttling \
     --disable-backgrounding-occluded-windows \
@@ -27,7 +30,10 @@ mkdir -p /app/downloads
     --disable-ipc-flooding-protection \
     --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" \
     --remote-debugging-port=9222 \
-    --dump-dom "https://dab.yeet.su/" > /app/downloads/dump.html
+    --display=:1 \
+    --window-size=1920,1080 \
+    --start-maximized \
+    "https://dab.yeet.su/" &
 
-# Keep container alive
-tail -f /dev/null
+# Keep the script running
+wait
